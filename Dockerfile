@@ -4,7 +4,10 @@ WORKDIR /go/src
 
 COPY ./src /go/src
 
-RUN apk update && apk add git 
-RUN go get -u github.com/labstack/gommon/color
+RUN apk update \
+    && apk add git \
+    && go build -o app \
+    && go get github.com/oxequa/realize
+
 
 

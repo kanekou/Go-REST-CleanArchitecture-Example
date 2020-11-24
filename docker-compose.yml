@@ -6,4 +6,5 @@ services:
       - 8080:8080
     volumes:
       - ./src:/go/src
+    command: realize start --run --no-config
     tty: true

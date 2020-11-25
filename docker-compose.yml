@@ -1,10 +1,38 @@
 version: '3'
+
 services:
   app:
-    build: .
+    build: 
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
     ports:
       - 8080:8080
     volumes:
-      - ./src:/go/src
-    command: realize start --run --no-config
-    tty: true
+      # - ./:/go/src
+      - ./:/app
+        #command: realize start --run --no-config
+    command: reflex -r '\.go$$' -s -- sh -c 'go run server.go'
+    container_name: go-rest-backend
+    working_dir: /app
+
+  db:
+    image: mysql:8.0
+    container_name: go-rest-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 3306:3306
+    volumes:
+      - data-volume:/var/lib/mysql
+
+  migration:
+    image: flyway/flyway
+    container_name: rest-db-migration
+    depends_on:
+      - db
+    volumes:
+      - ./database/migration:/flyway/sql
+
+volumes:
+  data-volume:

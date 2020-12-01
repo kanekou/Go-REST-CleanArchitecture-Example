@@ -29,6 +29,13 @@ func (userRepository *UserRepository) Update(u domain.User) (user domain.User, e
 	return
 }
 
+func (userRepository *UserRepository) DeleteByID(user domain.User) (err error) {
+	if err = userRepository.Save(&user).Error; err != nil {
+		return
+	}
+	return
+}
+
 func (userRepository *UserRepository) FindAll() (users domain.Users, err error) {
 	if err = userRepository.Find(&users).Error; err != nil {
 		return

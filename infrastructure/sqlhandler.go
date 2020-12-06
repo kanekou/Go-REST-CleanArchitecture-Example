@@ -4,6 +4,7 @@ import (
 	"app/interfaces/database"
 	"fmt"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
 	"time"
 )
@@ -13,7 +14,6 @@ type SqlHandler struct {
 }
 
 func NewMySqlDb() database.SqlHandler {
-	//FIX: DB接続
 	connectionString := fmt.Sprintf(
 		"%s:%s@tcp(%s:%s)/%s?parseTime=true",
 		"root",
@@ -22,8 +22,6 @@ func NewMySqlDb() database.SqlHandler {
 		"3306",
 		"go-rest",
 	)
-	//root:password@tcp(db:3306)/go-rest?charset=utf8mb4&parseTime=true&loc=Local
-	log.Println(connectionString)
 
 	// 接続確認
 	conn, err := open(connectionString, 30)

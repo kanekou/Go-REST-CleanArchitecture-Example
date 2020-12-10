@@ -23,7 +23,7 @@ $ curl localhost8080/users
 []
 ```
 
-## API Document
+## API Reference
 ### GET All Users
 
 request
@@ -68,6 +68,24 @@ request
 ```
 POST /users
 ```
+```
+{
+    "id": number,
+    "name": string,
+    "age": number
+}
+```
+
+response
+```
+{
+    "id": number,
+    "name": string,
+    "age": number,
+    "created_at": datetime,
+    "updated_at": datetime
+}
+```
 
 
 ### Update a user
@@ -111,8 +129,6 @@ response
     "updated_at": datetime
 }
 ```
-
-
 
 
 ## References

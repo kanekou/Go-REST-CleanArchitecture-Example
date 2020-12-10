@@ -1,5 +1,5 @@
 # Go-REST-CleanArchitecture-Example
-Go x Docker x CleanArchitecture x REST API practice
+Go x Echo x Docker x CleanArchitecture x REST API practice
 
 ## How to use?
 1. Launching Docker
@@ -24,7 +24,7 @@ $ curl localhost8080/users
 ```
 
 ## API Document
-- GET All Users
+### GET All Users
 
 request
 ```
@@ -44,7 +44,7 @@ response
 ]
 ```
 
-- GET a user 
+### GET a user 
 
 request
 ```
@@ -62,19 +62,39 @@ response
 }
 ```
 
-- Create a user
+### Create a user
 
 request
 ```
 POST /users
 ```
 
-- Update a user
+
+### Update a user
+
+request
 ```
 PUT /users/:id
 ```
+```
+{
+    "name": string,
+    "age": number
+}
+```
 
-- Delete a user
+response
+```
+{
+    "id": number,
+    "name": string,
+    "age": number,
+    "created_at": datetime,
+    "updated_at": datetime
+}
+```
+
+### Delete a user
 
 request
 ``` 
